@@ -4,14 +4,15 @@
 FirstApp.constant('settings', {
   contextPath: _contextPath,
   dateFormats: ['DD-MM', 'DD-MM-YY', 'DD-MM-YYYY', 'DD-MM-YYYY HH:mm'],
-  useAuthTokenHeader: true
+  useAuthTokenHeader: true,
+  language: 'mk'
 });
 
 FirstApp.value('version', '0.1');
 
 // register the interceptor as a service
 
-FirstApp.factory('HRHttpInterceptors', function($q, $location, $rootScope,
+FirstApp.factory('HttpInterceptors', function($q, $location, $rootScope,
   $filter, toaster, settings) {
   return {
     'request': function(config) {
@@ -35,7 +36,7 @@ FirstApp.factory('HRHttpInterceptors', function($q, $location, $rootScope,
     'responseError': function(rejection) {
       var status = rejection.status;
       if (status == 400) {
-        // invalid data 
+        // invalid data
 
       }
       if (status == 401) {

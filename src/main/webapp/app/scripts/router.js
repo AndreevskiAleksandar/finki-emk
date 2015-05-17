@@ -52,6 +52,10 @@ FirstApp.config(['$routeProvider', function ($routeProvider) {
     controller: 'OrderController'
   });
 
+  $routeProvider.when('/pay_order', {
+    templateUrl: 'views/pay_order.html'
+  });
+
 
   $routeProvider.when('/404', {
     templateUrl: '404.html'

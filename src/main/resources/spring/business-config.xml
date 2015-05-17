@@ -26,6 +26,8 @@
     <context:component-scan base-package="mk.ukim.finki.wp.config"/>
     <context:component-scan base-package="mk.ukim.finki.wp.service"/>
 
+    <import resource="mail/mail-config.xml"/>
+
 
     <!-- enables scanning for @Transactional annotations -->
     <tx:annotation-driven/>

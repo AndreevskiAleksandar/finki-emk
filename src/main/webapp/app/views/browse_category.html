@@ -1,11 +1,11 @@
 <div class="row">
 
-  <div class="col-md-6">
+  <div class="col-md-12">
     <h2>Books from category {{cat.name}} </h2>
 
     <!-- one tr element for each grade -->
     <div class="row" ng-repeat="e in entities">
-      <book-display entity="e"></book-display>
+      <book-display entity="e" shopping-cart="true"></book-display>
     </div>
   </div>
 </div>

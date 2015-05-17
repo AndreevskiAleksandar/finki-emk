@@ -43,6 +43,11 @@ public class OrderItemResource extends
       return  service.findByUserToken(tempToken(request));
   }
 
+  @RequestMapping(value = "/check_pay", method = RequestMethod.POST, produces = "application/json")
+  public void pay(HttpServletRequest request) {
+    System.out.println("pay invoked");
+  }
+
   public static String tempToken(HttpServletRequest request) {
     Cookie[] cookies = request.getCookies();
     for (Cookie c : cookies) {

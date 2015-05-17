@@ -20,18 +20,67 @@ var FirstApp = angular.module('avAngularStartupApp', ['ngResource', 'ngRoute',
   'pascalprecht.translate']);
 
 FirstApp.config(['$translateProvider', '$httpProvider', 'settings',
-  function ($translateProvider, $httpProvider, settings) {
+  function($translateProvider, $httpProvider, settings) {
 
-    //$httpProvider.interceptors.push('HRHttpInterceptors');
+    $httpProvider.interceptors.push('HttpInterceptors');
+
+    // Initialize angular-translate
+    $translateProvider.useStaticFilesLoader({
+      prefix: 'i18n/',
+      suffix: '.json'
+    });
+
+    $translateProvider.preferredLanguage(settings.language);
+
+    $translateProvider.useCookieStorage();
+
   }]);
 
-FirstApp.run(['$rootScope', '$http', 'crudService', 'settings', function ($rootScope, $http, crudService, settings) {
-  var categoryService = crudService('categories');
-  $rootScope.test = "Testing root scope";
-  $rootScope.categories = categoryService.query();
+FirstApp.run([
+  '$rootScope',
+  '$http',
+  '$cookies',
+  '$location',
+  'crudService',
+  '$cookieStore',
+  'UserService',
+  function($rootScope,
+           $http,
+           $cookies,
+           $location,
+           crudService,
+           $cookieStore,
+           UserService) {
 
-  var tempTokenService = $http.get(settings.contextPath + '/data/rest/token').
-    success(function (data, status, headers, config) {
-      console.log('token obtained')
-    })
-}]);
+    var categoryService = crudService('categories');
+
+    $rootScope.categories = categoryService.query();
+
+    $rootScope.authToken = $cookieStore.get('token');
+    if($rootScope.authToken) {
+      UserService.get(function(u) {
+        $rootScope.user = u;
+      });
+    }
+
+    $rootScope.logout = function() {
+      delete $rootScope.user;
+      delete $rootScope.authToken;
+      $cookies['token'] = null;
+      delete $cookies['token'];
+      var delete_cookie = function(name) {
+        document.cookie = name + '=; Path=/e-auction; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      };
+      delete_cookie('token');
+      $location.path("/login");
+    };
+
+    if(!$rootScope.authToken) {
+      var tempTokenService = $http.get('/data/rest/token').
+        success(function(data, status, headers, config) {
+          console.log('token obtained')
+        });
+    }
+
+
+  }]);

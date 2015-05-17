@@ -23,26 +23,43 @@
         </form>
 
 
-        <li class="active"><a ng-href="{{$root.pateka}}">Home</a>
+        <li class="active">
+          <a ng-href="{{$root.pateka}}">Home</a>
         </li>
         <li>
           <a ng-href="#/categories">Category Administration</a>
         </li>
-        <li><a ng-href="#/books">Books</a>
-        </li>
-       <!-- <li>
-          <a ng-href="#/newspapers">Newspapers</a>
-        </li>
         <li>
-          <a ng-href="#/magazines">Magazines</a>
-        </li>-->
-        <li><a ng-href="#">About</a>
+          <a ng-href="#/books">Books</a>
         </li>
-        <li><a ng-href="#">Contact</a>
-        <li><a ng-href="#/order_items">Shopping Cart</a>
+
+        <li>
+          <a ng-href="#/order_items">Shopping Cart</a>
         </li>
+
+        <li class="dropdown" ng-controller="LanguageController">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <span>
+                <i class="fa fa-fw fa-flag"></i>
+                <span class="hidden-tablet" translate="generic.language"></span>
+                <b class="caret"></b>
+            </span>
+          </a>
+          <ul class="dropdown-menu">
+            <li class="{{isActive(l.name) ? 'active':''}}" ng-repeat="l in languages">
+              <a ng-click="changeLanguage(l.name)">
+                <span class="famfamfam-flag-{{l.name}}"></span>&nbsp;<span translate="generic.{{l.name}}"></span></a>
+            </li>
+
+          </ul>
         </li>
-        <li><a ng-href="#/login">Login</a>
+
+        <li>
+          <a ng-href="#/login" ng-if="!$root.user">Login</a>
+          <a ng-click="logout()" ng-if="$root.user" class="clickable" title="logout">
+            <i class="fa fa-fw fa-sign-out"></i>
+            {{$root.user.username}}
+          </a>
         </li>
       </ul>
     </div>
