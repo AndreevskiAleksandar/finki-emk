@@ -19,107 +19,118 @@ import java.util.List;
 @Service
 public class PaypalServiceImpl implements PaymentService {
 
-  private APIContext apiContext;
+    private APIContext apiContext;
 
-  @PostConstruct
-  public void config() {
-    InputStream is = PaypalServiceImpl.class.getResourceAsStream("/sdk_config.properties");
-    try {
-      OAuthTokenCredential res = PayPalResource.initConfig(is);
-      String accessToken = res.getAccessToken();
+    private String token;
 
-      apiContext = new APIContext(accessToken);
+    @PostConstruct
+    public void config() {
+        InputStream is = PaypalServiceImpl.class.getResourceAsStream("/sdk_config.properties");
+        try {
+            OAuthTokenCredential res = PayPalResource.initConfig(is);
+            String accessToken = res.getAccessToken();
+            token = accessToken;
+            apiContext = new APIContext(accessToken);
 
-    } catch (PayPalRESTException e) {
-      e.printStackTrace();
-    }
-  }
-
-  @Override
-  public Payment executeCreditCardPayment(Address billingAddress, CreditCard creditCard, List<OrderItem> items) {
-
-    // The Payment creation API requires a list of
-    // Transaction; add the created `Transaction`
-    // to a List
-    List<Transaction> transactions = new ArrayList<Transaction>();
-
-    for (OrderItem item : items) {
-      // ###Details
-      // Let's you specify details of a payment amount.
-      Details details = new Details();
-      details.setSubtotal((int) item.getBook().getPrice() + "");
-      details.setTax((int) (item.getBook().getPrice() * 0.18) + "");
-
-      // ###Amount
-      // Let's you specify a payment amount.
-      Amount amount = new Amount();
-      amount.setCurrency("USD");
-      // Total must be equal to sum of shipping, tax and subtotal.
-      amount.setTotal((int) (item.getBook().getPrice() * 1.18) + "");
-      amount.setDetails(details);
-
-      // ###Transaction
-      // A transaction defines the contract of a
-      // payment - what is the payment for and who
-      // is fulfilling it. Transaction is created with
-      // a `Payee` and `Amount` types
-      Transaction transaction = new Transaction();
-      transaction.setAmount(amount);
-      transaction.setDescription("EMK book store: " + item.getBook().getName());
-      transactions.add(transaction);
+        } catch (PayPalRESTException e) {
+            e.printStackTrace();
+        }
     }
 
+    @Override
+    public List<Payment> executeCreditCardPayment(Address billingAddress, CreditCard creditCard, List<OrderItem> items) {
 
-    // ###FundingInstrument
-    // A resource representing a Payeer's funding instrument.
-    // Use a Payer ID (A unique identifier of the payer generated
-    // and provided by the facilitator. This is required when
-    // creating or using a tokenized funding instrument)
-    // and the `CreditCardDetails`
-    FundingInstrument fundingInstrument = new FundingInstrument();
-    fundingInstrument.setCreditCard(creditCard);
+        // The Payment creation API requires a list of
+        // Transaction; add the created `Transaction`
+        // to a List
+        List<Transaction> transactions = new ArrayList<Transaction>();
+
+        for (OrderItem item : items) {
+            // ###Details
+            // Let's you specify details of a payment amount.
+            Details details = new Details();
+            details.setSubtotal((int) item.getBook().getPrice() + "");
+            details.setTax((int) (item.getBook().getPrice() * 0.18) + "");
+
+            // ###Amount
+            // Let's you specify a payment amount.
+            Amount amount = new Amount();
+            amount.setCurrency("USD");
+            // Total must be equal to sum of shipping, tax and subtotal.
+            amount.setTotal((int) (item.getBook().getPrice() * 1.18) + "");
+            amount.setDetails(details);
+
+            // ###Transaction
+            // A transaction defines the contract of a
+            // payment - what is the payment for and who
+            // is fulfilling it. Transaction is created with
+            // a `Payee` and `Amount` types
+            Transaction transaction = new Transaction();
+            transaction.setAmount(amount);
+            transaction.setDescription("EMK book store: " + item.getBook().getName());
+            transactions.add(transaction);
+        }
 
 
-    // The Payment creation API requires a list of
-    // FundingInstrument; add the created `FundingInstrument`
-    // to a List
-    List<FundingInstrument> fundingInstrumentList = new ArrayList<FundingInstrument>();
-    fundingInstrumentList.add(fundingInstrument);
+        // ###FundingInstrument
+        // A resource representing a Payeer's funding instrument.
+        // Use a Payer ID (A unique identifier of the payer generated
+        // and provided by the facilitator. This is required when
+        // creating or using a tokenized funding instrument)
+        // and the `CreditCardDetails`
+        FundingInstrument fundingInstrument = new FundingInstrument();
+        fundingInstrument.setCreditCard(creditCard);
 
-    // ###Payer
-    // A resource representing a Payer that funds a payment
-    // Use the List of `FundingInstrument` and the Payment Method
-    // as 'credit_card'
-    Payer payer = new Payer();
-    payer.setFundingInstruments(fundingInstrumentList);
-    payer.setPaymentMethod("credit_card");
 
-    // ###Payment
-    // A Payment Resource; create one using
-    // the above types and intent as 'sale'
-    Payment payment = new Payment();
-    payment.setIntent("sale");
-    payment.setPayer(payer);
-    payment.setTransactions(transactions);
-    Payment createdPayment = null;
-    try {
+        // The Payment creation API requires a list of
+        // FundingInstrument; add the created `FundingInstrument`
+        // to a List
+        List<FundingInstrument> fundingInstrumentList = new ArrayList<FundingInstrument>();
+        fundingInstrumentList.add(fundingInstrument);
 
-      // Use this variant if you want to pass in a request id
-      // that is meaningful in your application, ideally
-      // a order id.
-      /*
-       * String requestId = Long.toString(System.nanoTime(); APIContext
-			 * apiContext = new APIContext(accessToken, requestId ));
-			 */
+        // ###Payer
+        // A resource representing a Payer that funds a payment
+        // Use the List of `FundingInstrument` and the Payment Method
+        // as 'credit_card'
+        Payer payer = new Payer();
+        payer.setFundingInstruments(fundingInstrumentList);
+        payer.setPaymentMethod("credit_card");
 
-      // Create a payment by posting to the APIService
-      // using a valid AccessToken
-      // The return object contains the status;
-      createdPayment = payment.create(apiContext);
+        // ###Payment
+        // A Payment Resource; create one using
+        // the above types and intent as 'sale'
 
-    } catch (PayPalRESTException e) {
-      e.printStackTrace();
+        List<Payment> payments = new ArrayList<Payment>();
+        for (Transaction t : transactions) {
+
+
+            Payment payment = new Payment();
+            payment.setIntent("sale");
+            payment.setPayer(payer);
+            List<Transaction> tmp_trsn  = new ArrayList<Transaction>();
+            tmp_trsn.add(t);
+            payment.setTransactions(tmp_trsn);
+            Payment createdPayment = null;
+            try {
+
+                // Use this variant if you want to pass in a request id
+                // that is meaningful in your application, ideally
+                // a order id.
+
+                String requestId = Long.toString(System.nanoTime());
+                APIContext apiContext = new APIContext(token, requestId);
+
+
+                // Create a payment by posting to the APIService
+                // using a valid AccessToken
+                // The return object contains the status;
+                createdPayment = payment.create(apiContext);
+                payments.add(createdPayment);
+
+            } catch (PayPalRESTException e) {
+                e.printStackTrace();
+            }
+        }
+        return payments;
     }
-    return createdPayment;
-  }
 }

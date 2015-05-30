@@ -8,6 +8,10 @@ FirstApp.controller('LoginController', [
   function($scope, $rootScope, $location, $filter, UserService, toaster) {
     $scope.rememberMe = false;
 
+    $scope.registerUser = function(){
+      $location.path("/register");
+    }
+
     $scope.login = function() {
       UserService.authenticate($.param({
           username: $scope.username,

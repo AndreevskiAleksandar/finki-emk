@@ -43,17 +43,12 @@
 
 	<div class="col-md-6">
 		<h2>Books</h2>
-		<table class="top-buffer">
-			<tr>
-				<th>Name</th>
-				<th>Category</th>
-				<th>Action</th>
-			</tr>
+		<table ng-table="table" class="table">
 			<!-- one tr element for each grade -->
 			<tr ng-repeat="e in entities">
-				<td>{{ e.name }}</td>
-				<td>{{ e.category.name }}</td>
-				<td>
+				<td data-title="'Name'">{{ e.name }}</td>
+				<td data-title="'Category'">{{ e.category.name }}</td>
+				<td data-title="'Action'">
 					<button ng-click="edit(e.id)" class="btn btn-danger btn-xs">
 						<i class="glyphicon glyphicon-plus"></i> Edit
 					</button>
@@ -66,4 +61,6 @@
       </table>
 		</div>
 	</div>
+
+<upload-panel label="book_attachments" object-id="entity.id" bean="book_attachment"></upload-panel>
 </div>

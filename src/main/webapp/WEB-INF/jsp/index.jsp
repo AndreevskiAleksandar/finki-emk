@@ -49,7 +49,7 @@
   <div class="">
     <div class="row row-offcanvas row-offcanvas-left">
       <!-- sidebar -->
-      <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+      <div class="col-xs-4 col-sm-2 sidebar-offcanvas" id="sidebar" role="navigation">
         <div ng-include="'nav/side.html'"></div>
       </div>
 
@@ -131,20 +131,27 @@
 <script src="scripts/controllers/browse-category.js"></script>
 <script src="scripts/controllers/search.js"></script>
 <script src="scripts/controllers/order.js"></script>
+<script src="scripts/controllers/book_details.js"></script>
 <script src="scripts/controllers/language.js"></script>
+<script src="scripts/controllers/register.js"></script>
+<script src="scripts/controllers/wish.js"></script>
 <!-- Services definition -->
 <script src="scripts/services/category.js"></script>
 <script src="scripts/services/crud.js"></script>
 <script src="scripts/services/user.js"></script>
 <script src="scripts/services/books.js"></script>
 <script src="scripts/services/orders.js"></script>
+<script src="scripts/services/wishes.js"></script>
+<script src="scripts/services/upload.js"></script>
+<script src="scripts/services/images.js"></script>
 
 <script src="scripts/directives/combo.js"></script>
 <script src="scripts/directives/book-display.js"></script>
+<script src="scripts/directives/upload.js"></script>
+<script src="scripts/directives/order_payment.js"></script>
 <!-- endbuild -->
 
 <toaster-container toaster-options="{'time-out': 3000}"></toaster-container>
 </body>
 
 </html>
-

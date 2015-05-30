@@ -15,7 +15,9 @@ FirstApp.controller('OrderController',
 
       $scope.pay = function() {
         Order.checkPay({}, function() {
-          $location.path("/pay_order");
+          angular.forEach($scope.entities, function(value, key) {
+            Order.pay();
+          });
         });
       }
 

@@ -4,9 +4,20 @@
     "error": "Error",
     "username": "Username",
     "password": "Password",
+    "email": "Email",
+    "firstname": "Firstname",
+    "lastname": "Lastname",
+    "confirm_password": "Confirm password",
+    "confirm_password_missmatch": "Passwords do not match!",
     "remember_me": "Remember me",
     "language": "Language",
     "mk": "Macedonian",
     "en": "English"
+  },
+
+  "action" : {
+    "login" : "Login",
+    "register" : "Register"
+
   }
 }

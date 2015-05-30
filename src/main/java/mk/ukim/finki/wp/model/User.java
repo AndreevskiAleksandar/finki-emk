@@ -11,10 +11,10 @@ import javax.persistence.Table;
 public class User extends BaseEntity {
 
 	public static enum Role {
-		ROLE_USERS, ROLE_STUDENT, ROLE_PROFESSOR, ROLE_ADMIN
+		ROLE_USERS, ROLE_ADMIN
 	}
 
-	private String fistName;
+	private String firstName;
 
 	private String lastName;
 
@@ -30,12 +30,12 @@ public class User extends BaseEntity {
 	@Column(name = "user_role", length = 20, nullable = false)
 	private Role role;
 
-	public String getFistName() {
-		return fistName;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFistName(String fistName) {
-		this.fistName = fistName;
+	public void setFirstName(String fistName) {
+		this.firstName = fistName;
 	}
 
 	public String getLastName() {

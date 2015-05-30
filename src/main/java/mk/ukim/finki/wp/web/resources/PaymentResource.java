@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -34,7 +36,7 @@ public class PaymentResource {
   private OrderItemService orderItemService;
 
   @RequestMapping(value = "/test_pay", method = RequestMethod.GET, produces = "application/json")
-  public Payment testPay() {
+  public List<Payment> testPay() {
 // ###Address
     // Base Address object used as shipping or billing
     // address in a payment. [Optional]
@@ -58,12 +60,45 @@ public class PaymentResource {
     creditCard.setNumber("5500005555555559");
     creditCard.setType("mastercard");
 
-    List<OrderItem> items = orderItemService.findByUserToken("4d810a7c-65e9-4db6-8457-c254ac96d127");
+    List<OrderItem> items = orderItemService.findByUserToken("6f440aed-5fb9-467c-b900-18b051e1eb16");
 
     return paymentService.executeCreditCardPayment(billingAddress,
       creditCard,
       items);
   }
+    @RequestMapping(value = "/pay", method = RequestMethod.POST, produces = "application/json")
+    public List<Payment> Pay(HttpServletRequest request, HttpServletResponse response) {
+// ###Address
+        // Base Address object used as shipping or billing
+        // address in a payment. [Optional]
+        Address billingAddress = new Address();
+        billingAddress.setCity("Johnstown");
+        billingAddress.setCountryCode("US");
+        billingAddress.setLine1("52 N Main ST");
+        billingAddress.setPostalCode("43210");
+        billingAddress.setState("OH");
+
+        // ###CreditCard
+        // A resource representing a credit card that can be
+        // used to fund a payment.
+        CreditCard creditCard = new CreditCard();
+        creditCard.setBillingAddress(billingAddress);
+        creditCard.setCvv2(111);
+        creditCard.setExpireMonth(11);
+        creditCard.setExpireYear(2018);
+        creditCard.setFirstName("Joe");
+        creditCard.setLastName("Shopper");
+        creditCard.setNumber("5500005555555559");
+        creditCard.setType("mastercard");
+
+        List<OrderItem> items = orderItemService.findByUserToken("4d810a7c-65e9-4db6-8457-c254ac96d127");
+        List<Payment> p = paymentService.executeCreditCardPayment(billingAddress,
+                creditCard,
+                items);
+        System.out.println(p);
+        return null;
+    }
+
 
   @RequestMapping("send_email_test")
   public void sendEmail() {

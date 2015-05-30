@@ -1,7 +1,8 @@
 <div class="panel panel-default">
   <div class="panel-body">
     <div class="col-md-4">
-      <img class="img-rounded" style="width:100px" src="imgs/spring_in_action_3rd_edition.jpg"/>
+      <!--<img class="img-rounded" style="width:100px" src="imgs/spring_in_action_3rd_edition.jpg"/>-->
+      <img class="img-rounded" style="width:150px" ng-src="{{img_url}}">
     </div>
     <div class="col-md-8">
       <div class="col-md-6">
@@ -12,17 +13,20 @@
       </div>
       <div class="col-md-2" ng-if="shoppingCart">
         <button class="btn btn-primary btn-xs" ng-click="addToCart()">
-          <i class="fa fa-fw fa-shopping-cart"></i> Add to cart
+          <i class="fa fa-fw fa-shopping-cart"></i> Add to cart &nbsp;<span class="glyphicon glyphicon-shopping-cart"></span>
+        </button>
+      </div>
+      <div class="col-md-2" ng-if="wishlist">
+        <button class="btn btn-primary btn-xs" ng-click="addToWishlist()">
+          <i class="fa fa-fw fa-shopping-cart"></i> Add to wishlist &nbsp;<span class="glyphicon glyphicon-list"></span>
         </button>
       </div>
       <div class="row">
         <div class="col-md-12">{{entity.description}}</div>
       </div>
-
     </div>
     <div class="row">
       <div class="col-md-4 col-md-offset-10" >Price: {{entity.price}}</div>
     </div>
-
   </div>
 </div>

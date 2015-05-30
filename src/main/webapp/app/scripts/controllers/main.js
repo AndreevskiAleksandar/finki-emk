@@ -13,4 +13,8 @@
 FirstApp.controller('MainCtrl', ['$scope', 'BookService',
   function ($scope, BookService) {
     $scope.promotedBooks = BookService.findPromoted();
+
+    $scope.showBook = function (book) {
+      $location.path("/book/details/" + book.id);
+    };
   }]);

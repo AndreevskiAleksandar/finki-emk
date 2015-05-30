@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface PaymentService {
 
-  public Payment executeCreditCardPayment(Address billingAddress,
-                                          CreditCard creditCard,
-                                          List<OrderItem> items);
+  public List<Payment> executeCreditCardPayment(Address billingAddress,
+                                                CreditCard creditCard,
+                                                List<OrderItem> items);
 }

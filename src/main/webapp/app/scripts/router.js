@@ -31,6 +31,11 @@ FirstApp.config(['$routeProvider', function ($routeProvider) {
     controller: 'LoginController'
   });
 
+  $routeProvider.when('/register', {
+    templateUrl: 'views/register.html',
+    controller: 'RegisterController'
+  });
+
 
   $routeProvider.when('/categories', {
     templateUrl: 'views/category.html',
@@ -50,6 +55,11 @@ FirstApp.config(['$routeProvider', function ($routeProvider) {
   $routeProvider.when('/order_items', {
     templateUrl: 'views/order.html',
     controller: 'OrderController'
+  });
+
+  $routeProvider.when('/wish_items', {
+    templateUrl: 'views/wish.html',
+    controller: 'WishController'
   });
 
   $routeProvider.when('/pay_order', {
