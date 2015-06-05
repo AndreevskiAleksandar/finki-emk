@@ -1,74 +1,61 @@
-<page-header header-title="{{ 'action.register' | translate }}" icon="fa-sign-in"></page-header>
+<page-header header-title="{{ 'action.register' | translate }}" icon="fa-sign-in"><style>
+  <!--
+  .colorgraph {
+    height: 5px;
+    border-top: 0;
+    background: #c4e17f;
+    border-radius: 5px;
+    background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+  }
+  -->
+</style></page-header>
 
-<div class="row">
+<div class="container">
 
-  <div class="col-md-6">
-    <form class="form-horizontal">
-      <div class="form-group">
-        <label for="firstname" class="col-md-3 control-label">
-          {{"generic.firstname" | translate }}
-        </label>
-
-        <div class="col-md-9">
-          <input id="firstname" ng-model="firstname" type="text" class="form-control"/>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+      <form role="form">
+        <h2>Please Sign Up</h2>
+        <hr class="colorgraph">
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="form-group">
+              <input type="text" ng-model="firstname" name="first_name" id="first_name" class="form-control input-lg" placeholder="{{'generic.firstname' | translate }}" tabindex="1">
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="form-group">
+              <input type="text" name="last_name" ng-model="lastname" id="last_name" class="form-control input-lg" placeholder="{{'generic.lastname' | translate }}" tabindex="2">
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="lastname" class="col-md-3 control-label">
-          {{"generic.lastname" | translate }}
-        </label>
-
-        <div class="col-md-9">
-          <input id="lastname" ng-model="lastname" type="text" class="form-control"/>
+        <div class="form-group">
+          <input type="text" name="display_name" ng-model="username" id="display_name" class="form-control input-lg" placeholder="{{'generic.username' | translate }}" tabindex="3">
         </div>
-      </div>
-
-      <div class="form-group">
-        <label for="mail" class="col-md-3 control-label">
-          {{"generic.email" | translate }}
-        </label>
-
-        <div class="col-md-9">
-          <input id="mail" ng-model="mail" type="email" class="form-control"/>
+        <div class="form-group">
+          <input type="email" name="email" ng-model="mail" id="email" class="form-control input-lg" placeholder="{{'generic.email' | translate }}" tabindex="4">
         </div>
-      </div>
-
-
-      <div class="form-group">
-        <label for="username" class="col-md-3 control-label" translate="generic.username"></label>
-
-        <div class="col-md-9">
-          <input id="username" ng-model="username" type="text" class="form-control"/>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="form-group">
+              <input type="password" name="password" ng-model="password" id="password" class="form-control input-lg" placeholder="{{'generic.password' | translate }}" tabindex="5">
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="form-group">
+              <input type="password" name="password_confirmation" ng-model="confirmPassword" id="password_confirmation" class="form-control input-lg" placeholder="{{'generic.confirmPassword' | translate }}" tabindex="6">
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="password" class="col-md-3 control-label">
-          {{"generic.password" | translate }}
-        </label>
+        <hr class="colorgraph">
+        <div class="row">
+          <div class="col-xs-12 col-md-12"><input type="submit" placeholder="{{ 'action.register' | translate }}" ng-click="register()" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
 
-        <div class="col-md-9">
-          <input id="password" ng-model="password" type="password" class="form-control"/>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="password" class="col-md-3 control-label">
-          {{"generic.confirm_password" | translate }}
-        </label>
-
-        <div class="col-md-9">
-          <input id="confirm_password" ng-model="confirmPassword" type="password" class="form-control"/>
-        </div>
-
-      </div>
-
-
-      <div class="form-group">
-        <div class="col-md-9 col-md-offset-3">
-          <input type="submit" value="{{ 'action.register' | translate }}" class="btn btn-primary" ng-click="register()"/>
-        </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
-
-
 </div>

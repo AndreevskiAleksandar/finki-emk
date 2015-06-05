@@ -1,0 +1,12 @@
+.navbar{
+	background-color: #232F3E;
+}
+.navbar a {
+	color: #CCC;
+	font-size: 1.2em;
+}
+.navbar a:hover, .navbar a:focus {
+  background-color: #232F3E !important;
+  color: #FFF;
+  font-weight: 100;
+}

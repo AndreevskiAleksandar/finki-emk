@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-6">
     <div class="panel top-buffer">
-      <h2>Category</h2>
+      <h2>{{'store.category' | translate}}</h2>
 
       <div>
         <label>Name</label>
@@ -17,13 +17,13 @@
 
 
   <div class="col-md-6">
-    <h2>All Categories</h2>
+    <h2>{{'store.categories'|translate}}</h2>
     <table ng-table="table" class="table">
       <!-- one tr element for each grade -->
       <tr ng-repeat="e in entities">
         <td data-title="'Name'">{{ e.name }}</td>
         <td data-title="'Action'">
-          <button ng-click="edit(e.id)" class="btn btn-danger btn-xs">
+          <button ng-click="edit(e.id)" class="btn btn-primary btn-xs">
             <i class="glyphicon glyphicon-plus"></i> Edit
           </button>
           <button ng-click="remove(e.id)" class="btn btn-danger btn-xs">

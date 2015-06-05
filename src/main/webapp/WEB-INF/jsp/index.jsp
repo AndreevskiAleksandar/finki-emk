@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" style="min-height:100%; position:relative;">
 
 <head>
   <meta charset="utf-8">
@@ -24,6 +24,7 @@
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
   <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/content.css">
   <!-- endbuild -->
 
   <script type="text/javascript">
@@ -31,39 +32,39 @@
   </script>
 </head>
 <!--
-	ng-app is directive that declares that the element
-	and its children will be handled by angular.js
+        ng-app is directive that declares that the element
+        and its children will be handled by angular.js
 -->
 
-<body ng-app="avAngularStartupApp">
+<body ng-app="avAngularStartupApp" style="padding-top: 0px; height:100%;">
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
   your browser</a> to improve your experience.</p>
 <![endif]-->
 
 <!-- Add your site or application content here -->
-<div class="page-container">
+<div class="page-container" >
   <div ng-include="'nav/top.html'"></div>
 
 
-  <div class="">
-    <div class="row row-offcanvas row-offcanvas-left">
+  <div class="" style="margin-bottom: 100px;">
+    <div class="row row-offcanvas row-offcanvas-left" >
       <!-- sidebar -->
-      <div class="col-xs-4 col-sm-2 sidebar-offcanvas" id="sidebar" role="navigation">
+      <div  id="sidebar" role="navigation" style="position:absolute; width: 20%; height: 100%; background-color: #222; padding-left:15px; top:54px;">
         <div ng-include="'nav/side.html'"></div>
       </div>
 
       <!--
-	    		ng-view is directive that declares that the element will be
-	    		place holder for the partial files included through the router
-	    	 -->
-      <div ng-view class="col-xs-12 col-sm-9"></div>
+                        ng-view is directive that declares that the element will be
+                        place holder for the partial files included through the router
+                 -->
+      <div ng-view class="col-xs-12 col-sm-9" style="margin-left:20%"></div>
     </div>
   </div>
 
   <div class="footer">
-    <p>
-      <span class="glyphicon glyphicon-heart"></span>from the Web programming team
+    <p align="right">
+      <span class="glyphicon glyphicon-heart"></span> from the ICT programming team
     </p>
   </div>
 </div>

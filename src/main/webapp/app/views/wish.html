@@ -1,6 +1,8 @@
-<div class="row">
-
+<div class="row" style="margin-left: 15px">
+  <div class="h1">
+    {{'store.wish_list_products' | translate}}
+  </div>
   <div class="row" ng-repeat="e in entities">
-    <book-display class="col-md-8" entity="e.book" shopping-cart="true" wishlist="false"></book-display>
+    <book-display class="col-md-12" entity="e.book" shopping-cart="true" wishlist="false"></book-display>
   </div>
 </div>

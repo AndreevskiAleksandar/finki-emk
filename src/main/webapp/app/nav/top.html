@@ -1,4 +1,4 @@
-<nav class="navbar">
+<nav class="navbar navbar-inverse" style="font-size: 18px">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -8,35 +8,40 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Book Store</a>
+      <img class="img-responsive img-rounded" width="160px" height="100px" ng-src="imgs/page_logo.jpg"/>
+
     </div>
     <div class="collapse navbar-collapse">
 
 
-      <ul class="nav nav-pills pull-right">
+      <ul class="nav navbar-nav">
+        <a class="navbar-brand" href="#"><b>ICT Store</b></a>
         <!-- Search form -->
-        <form class="navbar-form navbar-left" role="search" ng-submit="search()" ng-controller="SearchController">
-          <div class="form-group">
+        <form class="navbar-form navbar-right" role="search" ng-submit="search()" ng-controller="SearchController">
+          <div class="input-group">
             <input type="text" class="form-control" placeholder="Search" ng-model="searchField">
+            <div class="input-group-btn">
+              <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
           </div>
-          <button type="submit" class="btn btn-default">Submit</button>
         </form>
 
 
-        <li class="active"><a ng-href="#/">Home</a>
+
+        <li ><a ng-href="#/">Home</a>
         </li>
         <li>
-          <a ng-href="#/categories">Category Administration</a>
+          <a ng-href="#/categories">{{'store.category_admin' | translate}}</a>
         </li>
         <li>
-          <a ng-href="#/books">Books</a>
+          <a ng-href="#/books">{{'store.product_admin' | translate}}</a>
         </li>
 
         <li>
-          <a ng-href="#/order_items">Shopping Cart</a>
+          <a ng-href="#/order_items">{{'store.shopping_cart' | translate}}</a>
         </li>
         <li>
-          <a ng-href="#/wish_items">Wish List</a>
+          <a ng-href="#/wish_items">{{'store.wish_list' | translate}}</a>
         </li>
 
         <li class="dropdown" ng-controller="LanguageController">
@@ -57,10 +62,10 @@
         </li>
 
         <li>
-          <a ng-href="#/login" ng-if="!$root.user">Login</a>
+          <a ng-href="#/login" ng-if="!$root.user">{{'action.login' | translate}}</a>
           <a ng-click="logout()" ng-if="$root.user" class="clickable" title="logout">
             <i class="fa fa-fw fa-sign-out"></i>
-            {{$root.user.username}}
+            <span class="glyphicon glyphicon-user"></span>  {{$root.user.username}}
           </a>
         </li>
       </ul>
@@ -68,3 +73,4 @@
   </div>
 
 </nav>
+

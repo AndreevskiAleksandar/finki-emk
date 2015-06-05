@@ -10,9 +10,11 @@
  * @description # MainCtrl Controller of the avAngularStartupApp
  */
 
-FirstApp.controller('MainCtrl', ['$scope', 'BookService',
-  function ($scope, BookService) {
-    $scope.promotedBooks = BookService.findPromoted();
+FirstApp.controller('MainCtrl', ['$scope', 'BookService', '$rootScope',
+  function ($scope, BookService, $rootScope) {
+    $scope.promotedBooks = BookService.findPromoted({}, function(data){
+        //$("#sidebar_helper").css("height" ,data.length * 250 + "px");
+    });
 
     $scope.showBook = function (book) {
       $location.path("/book/details/" + book.id);

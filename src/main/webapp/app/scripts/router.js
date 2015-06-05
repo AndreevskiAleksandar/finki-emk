@@ -23,7 +23,8 @@ FirstApp.config(['$routeProvider', function ($routeProvider) {
   });
 
   $routeProvider.when('/book/details/:id', {
-    templateUrl: 'views/book_details.html'
+    templateUrl: 'views/book_details.html',
+    controller: 'BookDetailsController'
   });
 
   $routeProvider.when('/login', {

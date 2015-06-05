@@ -48,7 +48,7 @@ public class BookServiceImpl extends
 
     org.apache.lucene.search.Query luceneQuery = qb.keyword()
             .onFields("name", "description", "category.name")
-            .matching(text)
+            .matching("*"+text+"*")
             .createQuery();
 
     // wrap Lucene query in a javax.persistence.Query

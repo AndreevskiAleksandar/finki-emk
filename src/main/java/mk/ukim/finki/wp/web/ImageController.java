@@ -34,7 +34,7 @@ public class ImageController {
             new ResponseWriter(response).writeImageAttachment(attachments.iterator().next());
         } else {
             new ResponseWriter(response).writeImage(request.getServletContext()
-                            .getResourceAsStream("/images/yeoman.png"),
+                            .getResourceAsStream("images/yeoman.png"),
                     "image/png");
         }
     }

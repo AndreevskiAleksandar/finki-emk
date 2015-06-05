@@ -13,10 +13,9 @@ FirstApp.directive('orderPayment', [
     return {
       restrict: 'AE',
       scope: {
-        entities: '='
+        entities: '=',
+        total: '='
       }, controller: function ($scope, $element, crudService, $cookies, settings, Order) {
-
-//        $scope.entities = Order.getMyOrders();
 
         $scope.$watch('entities',
           function () {

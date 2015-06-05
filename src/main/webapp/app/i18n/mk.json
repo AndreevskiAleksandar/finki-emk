@@ -4,14 +4,45 @@
 		"absence_employee_required": "Постои барање за одмор кој се преклопува со овој ентитет.",
 		"DataIntegrityViolationException": "Ентитетот не може да се избрише бидејќи постојат други ентитети кои го референцираат. Ако сакате да го избришете, прво избришете ги сите ентитети кои го референцираат."
 	},
-	"generic" : {
-		"username": "Корисничко име",
-		"password": "Лозинка",
-		"remember_me": "Запамети ме",
-	  "login_error": "Грешка при најава",
-    "invalid_username_or_password": "Невалидно корисничко име или лозинка",
+  "generic": {
+    "home": "Почетна",
+    "contact_us": "Контактирајте не",
+    "success": "Успешно",
+    "error": "Грешка",
+    "username": "Корисничко име",
+    "password": "Лозинка",
+    "email": "Имеил",
+    "name": "Име",
+    "firstname": "Име",
+    "lastname": "Презиме",
+    "confirm_password": "Потврди лозинка",
+    "confirm_password_missmatch": "Лозинките не се совпаѓаат!",
+    "remember_me": "Запомни лозинка",
     "language": "Јазик",
     "mk": "Македонски",
     "en": "Англиски"
-	}
+  },
+
+  "action" : {
+    "login" : "Најава",
+    "register" : "Регистрирај се",
+    "search" : "Пребарај",
+    "please_sign_in": "Логирај се тука"
+  },
+
+  "store" : {
+    "product" : "Продукт",
+    "products" : "Продукти",
+    "category" : "Категорија",
+    "categories": "Категории",
+    "product_admin": "Админ. продукти",
+    "category_admin": "Админ. категории",
+    "shopping_cart": "Кошничка",
+    "wish_list": "Листа на желби",
+    "promoted_products": "Промовирани продукти",
+    "shopping_cart_products": "Продукти во кошничката",
+    "wish_list_products": "Продукти во листата на желби",
+    "price": "Цена"
+  }
+
 }

@@ -1,10 +1,13 @@
 {
   "generic": {
+    "home": "Home",
+    "contact_us": "Contact us",
     "success": "Success",
     "error": "Error",
     "username": "Username",
     "password": "Password",
     "email": "Email",
+    "name": "Name",
     "firstname": "Firstname",
     "lastname": "Lastname",
     "confirm_password": "Confirm password",
@@ -17,7 +20,23 @@
 
   "action" : {
     "login" : "Login",
-    "register" : "Register"
+    "register" : "Register",
+    "search" : "Search",
+    "please_sign_in": "Please Sign In"
+  },
 
+  "store" : {
+    "product" : "Product",
+    "products" : "Products",
+    "category" : "Category",
+    "categories": "Categories",
+    "product_admin": "Product admin",
+    "category_admin": "Category admin",
+    "shopping_cart": "Shopping cart",
+    "wish_list": "Wish list",
+    "promoted_products": "Promoted Products",
+    "shopping_cart_products": "Shopping Cart products",
+    "wish_list_products": "Wish List products",
+    "price": "Price"
   }
 }
